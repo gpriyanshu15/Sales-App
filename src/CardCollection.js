@@ -12,7 +12,6 @@ const CardCollection = () => {
       .then((data) => {
         const cardsArray = data.rows;
         setCards(cardsArray);
-        // console.log(cardsArray);
       })
       .catch((error) => {
         console.log("Error fetching cards:", error);
@@ -27,24 +26,26 @@ const CardCollection = () => {
   return (
     <div className="cardpage">
       <h1>BhaiyaPoints</h1>
-      {cards.map((card) => (
-        <div
-          className="card"
-          key={card["Model SKU"]}
-          onClick={() => handleClick(card["Model SKU"]?.slice(1))}
-        >
-          <h2>{card["Brand Name"]}</h2>
-          <p>{card["Model Name"]}</p>
-          <p>{card["Body Type"]}</p>
-          <h4>
-            {
-              card[
-                "Quote 1 (Incl. Road Tax, Insurance, Registration, Number Plate,"
-              ]
-            }
-          </h4>
-        </div>
-      ))}
+      <div className="card-container">
+        {cards.map((card) => (
+          <div
+            className="card"
+            key={card["Model SKU"]}
+            onClick={() => handleClick(card["Model SKU"]?.slice(1))}
+          >
+            <h2>{card["Brand Name"]}</h2>
+            <p>{card["Model Name"]}</p>
+            <p>{card["Body Type"]}</p>
+            <h4>
+              {
+                card[
+                  "Quote 1 (Incl. Road Tax, Insurance, Registration, Number Plate,"
+                ]
+              }
+            </h4>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
